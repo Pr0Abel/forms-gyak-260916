@@ -352,7 +352,7 @@
 					//console.log('formData ', formData)
 					//console.log('formData.entries() ', formData.entries());
 					const data = Object.fromEntries(formData.entries())
-					console.log('data ', data)
+					//console.log('data ', data)
 
 					var validateForm = ({ form, data }) => {
 						if (!data.first_name) {
@@ -407,7 +407,9 @@
 					.then(console.log())
 					.catch(console.warn)
 					.finally( () => {
-						window.location.href = "/forms-gyak/index.html"
+						alert("Form submitted successfully! Redirecting to the home page...")
+						setTimeout(() => {window.location.href = "/forms-gyak/index.html"}, 2000)
+						
 					})
 				})
 			</script>
