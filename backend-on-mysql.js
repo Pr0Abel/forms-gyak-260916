@@ -22,11 +22,46 @@ conn.connect(err => {
 
 //GET
 app.get('/users', (req, res) => {
-  const data = {}
-    return res.status(200).json(data)
+    const sql = 'SELECT id, name, email FROM users'
+    conn.query(sql, (error, results, fields) => {
+        if (error) {
+            console.warn("GET/users error:", +error.message)
+            return res.status(500).json({ error })
+        } else {
+            return res.status(200).json({ results, fields })
+        }
+    })
+})
+
+//GET /users/:id
+app.get('/users/:id', (req, res) => {
+    const { id } = req.params
+    const sql = 'SELECT id, name, email FROM users WHERE id = ?'
+    conn.query(sql, [+id], (error, results, fields) => {
+        if (error) {
+            console.warn(`GET/users/${id} error:`, +error.message)
+            return res.status(500).json({ error })
+        } else {
+            return res.status(200).json({ results, fields })
+        }
+    })
+})
+
+//POST /users
+    app.post('/users', (req, res) => {
+        const {name, email, password} = req.body
+        const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'
+        conn.query(sql, [name, email, password], (error, results, fields) => {
+            if (error) {
+                console.warn("POST/users error:", +error.message)
+                return res.status(500).json({error})
+            } else {
+                return res.status(201).json({results})
+            }
+    })
 })
 
 const PORT = 3000
 app.listen(PORT, () => {
-  console.log("Server is running on port:", PORT)
+    console.log("Server is running on port:", PORT)
 })
