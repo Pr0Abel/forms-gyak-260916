@@ -1,0 +1,24 @@
+{
+  "name": "forms-gyak",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Pr0Abel/forms-gyak-260916#readme",
+  "bugs": {
+    "url": "https://github.com/Pr0Abel/forms-gyak-260916/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pr0Abel/forms-gyak-260916.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.4.0"
+  }
+}
