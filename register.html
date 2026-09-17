@@ -352,7 +352,8 @@
 					//console.log('formData ', formData)
 					//console.log('formData.entries() ', formData.entries());
 					const data = Object.fromEntries(formData.entries())
-					//console.log('data ', data)
+					console.log('data ', data)
+					//console.log("data.avatar", JSON.stringify(data.avatar));
 
 					var validateForm = ({ form, data }) => {
 						if (!data.first_name) {
@@ -388,10 +389,18 @@
 							if (!data.confirm_password) {
 								console.warn("Confirm password!")
 							} else {
+								if (data.password != data.confirm_password) {
+									console.warn("The passwords are not equal!")
+								}
 							}
-							if (data.password != data.confirm_password) {
-								console.warn("The passwords are not equal!")
-							}
+						}
+						console.log("File name: ", data.avatar.name);
+						console.log("File size: ", data.avatar.size);
+
+						if (data.avatar.name && data.avatar.size>0) {
+							const fileUpload = document.getElementById('profile-avatar')
+							const file = fileUpload.files[0]
+							//Filereader API
 						}
 					}
 
@@ -404,13 +413,15 @@
 							"Content-Type": "application/json"
 						}
 					})
-					.then(console.log())
-					.catch(console.warn)
-					.finally( () => {
-						alert("Form submitted successfully! Redirecting to the home page...")
-						setTimeout(() => {window.location.href = "/forms-gyak/index.html"}, 2000)
-						
-					})
+						.then(console.log())
+						.catch(console.warn)
+						.finally(() => {
+							alert("Form submitted successfully! Redirecting to the home page...")
+							setTimeout(() => {
+								//window.location.href = "/forms-gyak/"
+							}, 2000)
+
+						})
 				})
 			</script>
 		</div>
